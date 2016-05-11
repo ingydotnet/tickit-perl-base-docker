@@ -6,10 +6,10 @@ set -x
 (
   finalize=${1:?"First argument must be true or false"}
 
-  apks="build-base curl perl perl-dev wget"
+  apks="build-base curl wget"
   apks_dev="bash ruby vim"
 
-  apk add --update $apks
+  apk add --update perl-dev $apks
 
   if ! $finalize; then
     apk add $apks_dev
@@ -25,7 +25,6 @@ set -x
   if $finalize; then
     apk del $apks
     apk del $apks_dev
-    apk del openssl || true
     rm -fr /var/cache/apk/*
 
     rm -f /build.sh /docker-build.log

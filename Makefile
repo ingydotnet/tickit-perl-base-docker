@@ -8,7 +8,7 @@ build:
 dev:
 	docker build -t $(TAG) -f Dockerfile.dev .
 
-push: build
+push: clean build
 	docker push $(TAG)
 
 shell:
